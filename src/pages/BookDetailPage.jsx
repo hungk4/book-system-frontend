@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import axiosClient from '../api/axiosClient';
 import { 
   BookOpen, Heart, Share2, ChevronRight, 
@@ -13,12 +13,13 @@ const BookDetailPage = () => {
   const [error, setError] = useState(null);
   const [isFavorite, setIsFavorite] = useState(false);
 
+  const navigate = useNavigate()
+
   useEffect(() => {
     const fetchBookDetail = async () => {
       try {
         setLoading(true);
         const response = await axiosClient.get(`/books/${id}`);
-        console.log(response);
         setBook(response.book);
       } catch (err) {
         console.error("Lỗi:", err);
@@ -31,13 +32,13 @@ const BookDetailPage = () => {
   }, [id]);
 
   const handleReadNow = () => {
-    // Chuyển hướng đến trang đọc (ví dụ: chuong 1)
-    alert(`Bắt đầu đọc sách: ${book.title}`);
+    // Chuyển hướng đến trang đọc sách
+    navigate(`/read/${id}`);
   };
 
   const toggleFavorite = () => {
     setIsFavorite(!isFavorite);
-    // Gọi API thêm/xóa khỏi thư viện yêu thích ở đây
+    // Gọi API thêm/xóa khỏi thư viện yêu thích
   };
 
   if (loading) {
