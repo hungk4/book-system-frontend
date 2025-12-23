@@ -23,16 +23,16 @@ axiosClient.interceptors.request.use(
 );
 
 // Add a response interceptor
-axiosClient.interceptors.response.use(
-  function (response) {
-    if (response && response.data) {
-      return response.data;
-    }
-    return response;
-  },
-  function (error) {
-    return Promise.reject(error);
-  }
-);
+// axiosClient.interceptors.response.use(
+//   function (response) {
+//     if (response && response.data) {
+//       return response.data;
+//     }
+//     return response;
+//   },
+//   function (error) {
+//     return Promise.reject(error);
+//   }
+// );
 
 export default axiosClient;

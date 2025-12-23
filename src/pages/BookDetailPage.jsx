@@ -20,7 +20,7 @@ const BookDetailPage = () => {
       try {
         setLoading(true);
         const response = await axiosClient.get(`/books/${id}`);
-        setBook(response.book);
+        setBook(response.data.book);
       } catch (err) {
         console.error("Lỗi:", err);
         setError("Không thể tải thông tin sách.");
@@ -61,7 +61,7 @@ const BookDetailPage = () => {
   }
 
   // Fallback nếu không có ảnh
-  const coverImage = book.cover_image_key || "https://placehold.co/400x600?text=No+Cover";
+  const coverImage = book.cover_url || "https://placehold.co/400x600?text=No+Cover";
 
   return (
     <div className="bg-gray-50 dark:bg-slate-900 min-h-screen pb-12 font-sans">

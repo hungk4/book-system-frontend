@@ -15,7 +15,7 @@ const BookCard = ({ book }) => {
       <div className="relative aspect-3/4 w-full overflow-hidden bg-gray-100 dark:bg-slate-700">
         {book.cover_image_key ? (
           <img 
-            src={book.cover_image_key} 
+            src={book.cover_url || "https://placehold.co/400x600?text=No+Cover"}
             alt={book.title} 
             className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" 
           />

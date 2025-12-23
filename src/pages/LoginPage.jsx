@@ -42,11 +42,12 @@ const LoginPage = () => {
     try {
       // Gọi API đăng nhập
       const response = await axiosClient.post("/auth/login", formData);
+      console.log("Login Response:", response);
 
       // Giả sử API trả về { token: "...", user: {...} }
-      if (response.token) {
-        localStorage.setItem("token", response.token);
-        localStorage.setItem("user", JSON.stringify(response.user || {}));
+      if (response.data.token) {
+        localStorage.setItem("token", response.data.token);
+        localStorage.setItem("user", JSON.stringify(response.data.user || {}));
 
         // Chuyển hướng về trang chủ
         navigate("/");
@@ -98,7 +99,7 @@ const LoginPage = () => {
         >
           <Home size={20} />
         </Link>
-        
+
         {/* Header */}
         <div className="text-center mb-8">
           <h2 className="text-3xl font-bold text-gray-900 dark:text-white">

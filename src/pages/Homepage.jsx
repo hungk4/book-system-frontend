@@ -19,8 +19,8 @@ const HomePage = () => {
           axiosClient.get('/books'),
           axiosClient.get('/categories')
         ]);
-        setBooks(booksRes.books || []);
-        setCategories(categoriesRes.categories || []);
+        setBooks(booksRes.data.books || []);
+        setCategories(categoriesRes.data.categories || []);
       } catch (err) {
         console.error("Lỗi tải dữ liệu:", err);
         setError("Không thể tải dữ liệu. Vui lòng kiểm tra kết nối Server.");
@@ -40,7 +40,7 @@ const HomePage = () => {
     try {
       const url = categoryId ? `/books?categoryId=${categoryId}` : '/books';
       const response = await axiosClient.get(url);
-      setBooks(response.books || []);
+      setBooks(response.data.books || []);
     } catch (err) {
       console.error("Lỗi lọc sách:", err);
     } finally {

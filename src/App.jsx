@@ -1,10 +1,12 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import MainLayout from './components/layouts/MainLayout';
-import HomePage from './pages/Homepage';
-import BookDetailPage from './pages/BookDetailPage';
-import BookReadingPage from './pages/BookReadingPage';
-import LoginPage from "./pages/LoginPage"
-import RegisterPage from "./pages/RegisterPage"
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import MainLayout from "./components/layouts/MainLayout";
+import HomePage from "./pages/Homepage";
+import BookDetailPage from "./pages/BookDetailPage";
+import BookReadingPage from "./pages/BookReadingPage";
+import LoginPage from "./pages/LoginPage";
+import RegisterPage from "./pages/RegisterPage";
+
+import AdminUploadBookPage from "./pages/admin/AdminUploadBookPage";
 
 function App() {
   return (
@@ -14,6 +16,8 @@ function App() {
           <Route index element={<HomePage />} />
           <Route path="book/:id" element={<BookDetailPage />} />
           <Route path="read/:id" element={<BookReadingPage />} />
+
+          <Route path="admin/upload" element={<AdminUploadBookPage />} />
         </Route>
 
         <Route path="/login" element={<LoginPage />} />
@@ -24,4 +28,3 @@ function App() {
 }
 
 export default App;
-
