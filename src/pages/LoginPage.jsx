@@ -1,10 +1,19 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import axiosClient from "../api/axiosClient";
-import { Mail, Lock, Loader, AlertCircle, ArrowRight } from "lucide-react";
+import {
+  Mail,
+  Lock,
+  Loader,
+  AlertCircle,
+  ArrowRight,
+  Home,
+} from "lucide-react";
+import { useEffect } from "react";
 
 const LoginPage = () => {
   const navigate = useNavigate();
+  const location = useLocation();
 
   // State quản lý form
   const [formData, setFormData] = useState({
@@ -66,9 +75,30 @@ const LoginPage = () => {
     );
   };
 
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    const token = params.get("token");
+    const user = params.get("user");
+
+    if (token && user) {
+      localStorage.setItem("token", token);
+      localStorage.setItem("user", user);
+
+      navigate("/");
+    }
+  }, [location, navigate]);
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900 px-4 py-12 transition-colors duration-300">
       <div className="max-w-md w-full bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 border border-gray-100 dark:border-gray-700">
+        <Link
+          to="/"
+          className="absolute top-6 left-6 p-2 rounded-full text-gray-400 hover:text-blue-600 hover:bg-blue-50 dark:hover:bg-slate-700 transition-all"
+          title="Quay về trang chủ"
+        >
+          <Home size={20} />
+        </Link>
+        
         {/* Header */}
         <div className="text-center mb-8">
           <h2 className="text-3xl font-bold text-gray-900 dark:text-white">
@@ -143,7 +173,7 @@ const LoginPage = () => {
           <button
             type="submit"
             disabled={loading}
-            className="w-full flex items-center justify-center gap-2 py-2.5 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-70 disabled:cursor-not-allowed transition-all"
+            className="w-full cursor-pointer flex items-center justify-center gap-2 py-2.5 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-70 disabled:cursor-not-allowed transition-all"
           >
             {loading ? (
               <Loader className="animate-spin" size={20} />
@@ -172,7 +202,7 @@ const LoginPage = () => {
           <button
             onClick={handleGoogleLogin}
             type="button"
-            className="w-full flex items-center justify-center gap-3 py-2.5 px-4 border border-gray-300 dark:border-gray-600 rounded-lg shadow-sm bg-white dark:bg-gray-700 text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600 transition-colors"
+            className="w-full cursor-pointer flex items-center justify-center gap-3 py-2.5 px-4 border border-gray-300 dark:border-gray-600 rounded-lg shadow-sm bg-white dark:bg-gray-700 text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600 transition-colors"
           >
             {/* Google Icon SVG */}
             <svg className="h-5 w-5" aria-hidden="true" viewBox="0 0 24 24">
