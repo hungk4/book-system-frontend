@@ -7,6 +7,8 @@ import BookDetailPage from "./pages/BookDetailPage";
 import BookReadingPage from "./pages/BookReadingPage";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
+import SubscriptionPage from "./pages/SubscriptionPage";
+import PaymentResult from "./pages/PaymentResult";
 
 import AdminUploadBookPage from "./pages/admin/AdminUploadBookPage";
 import AdminDashboard from "./pages/admin/AdminDashboard";
@@ -20,7 +22,8 @@ function App() {
           <Route index element={<HomePage />} />
           <Route path="book/:id" element={<BookDetailPage />} />
           <Route path="read/:id" element={<BookReadingPage />} />
-
+          <Route path="subscription" element={<SubscriptionPage />} />
+          <Route path="payment-result" element={<PaymentResult />} />
         </Route>
         <Route path="/admin" element={<AdminLayout />}>
           <Route index element={<AdminDashboard />} />{" "}
