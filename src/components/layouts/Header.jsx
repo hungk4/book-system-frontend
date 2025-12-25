@@ -65,7 +65,7 @@ const Header = () => {
           className="flex items-center space-x-2 text-blue-600 dark:text-blue-400"
         >
           <BookText size={28} />
-          <span className="text-xl font-bold">BookSystem</span>
+          <span className="text-xl font-bold">E-Book</span>
         </Link>
 
         <div className="flex items-center space-x-6">
@@ -105,11 +105,6 @@ const Header = () => {
                 {/* Popup Menu */}
                 {isMenuOpen && (
                   <div className="absolute right-0 mt-2 w-48 bg-white dark:bg-slate-800 rounded-md shadow-lg py-1 border border-gray-200 dark:border-slate-700 z-50 animate-in fade-in zoom-in duration-200">
-                    {/* <div className="px-4 py-2 border-b border-gray-100 dark:border-slate-700">
-                      <p className="text-xs text-gray-500 dark:text-gray-400">Tài khoản</p>
-                      <p className="text-sm font-semibold text-gray-700 dark:text-gray-200 truncate">{user.email}</p>
-                    </div> */}
-
                     <button
                       onClick={handleLogout}
                       className="w-full cursor-pointer flex items-center gap-2 px-4 py-2 text-sm text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors"
